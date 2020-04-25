@@ -10,14 +10,22 @@ router.get("/", function(req, res) {
 router.get("/burgers", function(req, res) {
     burger.all(function(data) {
         var hbsObject = { burgers: data };
+        res.render("index", hbsObject);
     });
 });
 
 router.post("/burgers/create", function(req, res) {
     burger.update(req.params.id, function(result) {
         console.log(result);
-        res.json("/");
+        res.redirect("/");
          
+    });
+});
+
+router.put("/burgers/update/:id", function(req, res) {
+    burger.update(re.params.id, function(result) {
+        console.log(result);
+        res.json("/");
     });
 });
 module.exports = router;
