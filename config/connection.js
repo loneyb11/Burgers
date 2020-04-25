@@ -1,9 +1,12 @@
 var mysql = require("mysql2");
 
+var conncetion;
+
 if(process.env.JAWSDB_URL){
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 }else{
-var connection = mysql.createConnection({
+ connection = mysql.createConnection({
+    port: 3360,
     host: "localhost",
     user: "root",
     password: "",
