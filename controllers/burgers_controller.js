@@ -1,7 +1,7 @@
 var express = require("express");
 
 var router = express.Router();
-var burger = require ("../models/burger");
+var burger = require ("../models/burger.js");
 
 router.get("/", function(req, res) {
     res.redirect("/burgers");
@@ -14,7 +14,7 @@ router.get("/burgers", function(req, res) {
     });
 });
 
-router.post("/burgers/create", function(req, res) {
+router.post("/burgers/create:id", function(req, res) {
     burger.update(req.params.id, function(result) {
         console.log(result);
         res.redirect("/");
@@ -23,7 +23,7 @@ router.post("/burgers/create", function(req, res) {
 });
 
 router.put("/burgers/update/:id", function(req, res) {
-    burger.update(re.params.id, function(result) {
+    burger.update(req.params.id, function(result) {
         console.log(result);
         res.json("/");
     });
