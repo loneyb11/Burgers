@@ -9,7 +9,7 @@ router.get("/", function(req, res) {
 });
 
 router.get("/burger", function(req, res) {
-    burger.selectAll(function(data) {
+    burger.all(function(data) {
         var viewObj = { burgers: data };
         console.log(viewObj);
         res.render("index", viewObj);
