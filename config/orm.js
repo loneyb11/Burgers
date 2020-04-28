@@ -13,8 +13,7 @@ function objToSql(ob) {
     var arr = [];
 
     for (var key in ob) {
-     //   if (ob[key]) {
-        if (Object.hasOwnProperty.call(ob, key)) {
+        if (ob[key]) {
             arr.push(key + "=" + ob[key]);
 
         }
@@ -23,52 +22,32 @@ function objToSql(ob) {
 }
 
 var orm = {
-    all: function (tableInput, cb) {
+    selectAll: function (tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
-            if (err){ 
-                throw err;
+            if (err){ throw err;
         }
             cb(result);
         });
 
     },
-    insertOne: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
-    
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-    
+    insertOne: function (table, cols, vals, cb) {
+        var queryString = ' INSERT INTO ' + table + ' (' + cols + ') ' + 'VALUES("' + [vals] + '")';
         console.log(queryString);
-    
+
         connection.query(queryString, vals, function(err, result) {
-          if (err) {
-            throw err;
-          }
-          cb(result);
+            if (err) throw err;
+            cb(result);
         });
-      },
-    updateOne: function(table, objColVals, condition, cb) {
-        var queryString = "UPDATE " + table;
-    
-        queryString += " SET ";
-        queryString += objToSql(objColVals);
-        queryString += " WHERE ";
-        queryString += condition;
-    
+    },
+    updateOne: function (table, col_name, burger_id, cb) {
+        var queryString = 'UPDATE ' + table + ' SET ' + col_name + '=1' + " WHERE id=" + burger_id;
         console.log(queryString);
         connection.query(queryString, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
-          cb(result);
+            if (err) throw err;
+            cb(result);
         });
-      },
+    },
     deleteOne: function(table, burger_id, cb){
         var queryString = 'DELETE FROM ' + table + ' WHERE id = ' + burger_id;
         console.log(queryString);
