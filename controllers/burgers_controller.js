@@ -5,10 +5,6 @@ var burger = require ("../models/burger.js");
 var router = express.Router();
 
 router.get("/", function(req, res) {
-    res.redirect("/burgers");
-});
-
-router.get("/burgers", function(req, res) {
     burger.selectAll(function(data) {
         var viewObj = { burgers: data };
         res.render("index", viewObj);
@@ -16,9 +12,10 @@ router.get("/burgers", function(req, res) {
 });
 
 router.post("/burgers/create", function(req, res) {
-    burger.insertOne("burger_name", req.body.name, function() {
-        console.log(result);
-        res.redirect("/burgers");
+    console.log("creating a burger with new name: " + req.body.burger_name);
+    burger.insertOne("burger_name", req.body.name, function(result) {
+
+        res.json("result");
          
     });
 });

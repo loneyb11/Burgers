@@ -16,7 +16,7 @@
                             {{this.burger_name}}
                         </div>
                         <div class="col s3 m4">
-                            <form action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
+                            <form action="/burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
                                 <button class="btn btn-flat blue waves-effect waves-light white-text chip" type="submit"
                                     style="float:right">devour</button>
                             </form>
@@ -36,7 +36,7 @@
                             {{this.burger_name}}
                         </div>
                         <div class="col s3 m4">
-                            <form action="burgers/delete/{{this.id}}?_method=DELETE" method="POST">
+                            <form action="/burgers/delete/{{this.id}}?_method=DELETE" method="POST">
                                 <button class="btn btn-flat blue waves-effect waves-light white-text chip"
                                     type="submit">DELETE!</button>
                             </form>
@@ -50,7 +50,7 @@
 
             <div class="row bottom">
                 <h4 class='center-align'>Order burger:</h4>
-                <form class="form-inline" action="burgers/create" method="POST">
+                <form class="form-inline" action="/burgers/create" method="POST">
                     <div class="form-group">
                         <label for="ca">
                             <h4>Burger Name:</h4>
