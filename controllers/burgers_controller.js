@@ -15,7 +15,7 @@ router.post("/burgers/create", function(req, res) {
     console.log("creating a burger with new name: ");
     burger.insertOne("burger_name", req.body.name, function() {
     
-        res.redirect("/burgers");
+        res.redirect("/");
          
     });
 });
