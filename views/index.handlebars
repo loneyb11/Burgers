@@ -1,6 +1,6 @@
 <header class="text-center">
     <div class="jumbotron">
-        <h1 class="center-align">BEN'S BAD <img src="/images/burger-hands.png" height="54"> BOY BURGERS</h1>
+        <h1 class="center-align">BEN'S BAD <img src="/images/burger.jpg" height="54"> BOY BURGERS</h1>
     </div>
 </header>
 <main>
@@ -9,16 +9,18 @@
             <div class="row main">
                 <div class="col s12 m6">
                     <h4>Ben's Burgers</h4>
-                    {{#each burgers}}
+                    {{#each burger_data}}
                     {{#unless this.devoured}}
                     <div class="row burgers">
                         <div class="col s6 burger chip">
-                            {{this.burger_name}}
+                           {{this.id}}. {{this.burger_name}}
                         </div>
                         <div class="col s3 m4">
-                            <form action="/burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
+                            <form class="devour-form button-size">
+
+                            <input input type="hidden" class"burger_id" type="text" value={{this.id}}<br>
                                 <button class="btn btn-flat blue waves-effect waves-light white-text chip" type="submit"
-                                    style="float:right">devour</button>
+                                    style="float:right">Devour</button>
                             </form>
                         </div>
                     </div>
@@ -29,11 +31,11 @@
 
                 <div class="col s12 m6">
                     <h4>Devoured Burgers</h4>
-                    {{#each burgers}}
+                    {{#each burger_data}}
                     {{#if this.devoured}}
                     <div class="row burgers">
                         <div class="col s6 burger chip">
-                            {{this.burger_name}}
+                            {{this.id}}
                         </div>
                         <div class="col s3 m4">
                             <form action="/burgers/delete/{{this.id}}?_method=DELETE" method="POST">
@@ -55,7 +57,7 @@
                         <label for="ca">
                             <h4>Burger Name:</h4>
                         </label>
-                        <input type="text" id="ca" name="name" class="form-control" required>
+                        <input type="text" id="ca" name="burger_name" class="form-control" required>
                     </div>
                     <button class="btn btn-flat blue waves-effect waves-light white-text chip center-align"
                         type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Add Burger</button>

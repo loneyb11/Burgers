@@ -6,22 +6,17 @@ var burger = {
             cb(res);
         });
     },
-    insertOne: function(column, name, cb) {
-        orm.insertOne("burgers", column, name, function(res){
-            cb(res);
-
-    });
+    insertOne: function(name, cb) {
+        orm.insertOne("burgers", 
+        ["burger_name", "devoured"
+    ],[
+        name, false
+    ], cb);
 },
-    updateOne: function(table, column, id, cb) {
-        orm.updateOne("burgers", column, id, function(res){
-            cb(res);
 
-        });
-    },
-        deleteOne: function(table, id, cb){
-            orm.deleteOne('burgers', id, function(res){
-                cb(res);
-            });
+    updateOne: function(id, cb) {
+        var condition ="id=" + id;
+        orm.updateOne("burgers", { devoured: true }, condition, cb);
         }
     };
 module.exports = burger;
